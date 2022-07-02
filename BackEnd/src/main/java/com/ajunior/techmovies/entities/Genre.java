@@ -7,16 +7,14 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
 
 
 @Entity
 @Table(name = "tb_genre")
 public class Genre implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -27,7 +25,8 @@ public class Genre implements Serializable {
 	@OneToMany(mappedBy = "genre")
 	private List<Movie> movies = new ArrayList<>();
 	
-	public Genre() {}
+	public Genre() {
+	}
 
 	public Genre(Long id, String name) {
 		this.id = id;
