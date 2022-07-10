@@ -1,8 +1,8 @@
 package com.ajunior.techmovies.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +23,7 @@ public class Genre implements Serializable {
 	private String name;
 	
 	@OneToMany(mappedBy = "genre")
-	private List<Movie> movies = new ArrayList<>();
+	private Set<Movie> movies = new HashSet<>();
 	
 	public Genre() {
 	}
@@ -49,7 +49,7 @@ public class Genre implements Serializable {
 		this.name = name;
 	}
 
-	public List<Movie> getMovies() {
+	public Set<Movie> getMovies() {
 		return movies;
 	}
 
