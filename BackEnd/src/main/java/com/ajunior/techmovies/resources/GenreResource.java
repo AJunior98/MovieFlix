@@ -1,5 +1,7 @@
 package com.ajunior.techmovies.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +17,18 @@ import com.ajunior.techmovies.services.GenreService;
 public class GenreResource {
 	
 	@Autowired
-	private GenreService service;
+	private GenreService genreService;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<GenreDTO> findById(@PathVariable Long id){
-		GenreDTO dto = service.findById(id);
+		GenreDTO dto = genreService.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
+	
+	@GetMapping
+	public ResponseEntity<List<GenreDTO>> findAll(){
+		List<GenreDTO> list = genreService.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
 }
