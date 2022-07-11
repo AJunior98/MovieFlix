@@ -1,16 +1,13 @@
 package com.ajunior.techmovies.dto.details;
 
-import com.ajunior.techmovies.dto.UserDTO;
-import com.ajunior.techmovies.entities.Movie;
 import com.ajunior.techmovies.entities.Review;
 
 public class ReviewDTODetails {
 
 	private Long id;
 	private String text;
-	private UserDTO user;
-	
-	private Movie movie;
+	private Long movieId;
+	private UserDTODetails user;
 	
 	public ReviewDTODetails() {
 	}
@@ -18,8 +15,8 @@ public class ReviewDTODetails {
 	public ReviewDTODetails(Review entity) {
 		id = entity.getId();
 		text = entity.getText();
-		movie = entity.getMovie();
-		user = new UserDTO(entity.getUser());
+		movieId = entity.getMovie().getId();
+		user = new UserDTODetails(entity.getUser());
 	}
 	
 	public Long getId() {
@@ -38,20 +35,20 @@ public class ReviewDTODetails {
 		this.text = text;
 	}
 
-	public UserDTO getUser() {
+	public UserDTODetails getUser() {
 		return user;
 	}
 
-	public void setUser(UserDTO user) {
+	public void setUser(UserDTODetails user) {
 		this.user = user;
 	}
 
-	public Movie getMovie() {
-		return movie;
+	public Long getMovieId() {
+		return movieId;
 	}
 
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}	
+	public void setMovieId(Long movieId) {
+		this.movieId = movieId;
+	}
 }
 

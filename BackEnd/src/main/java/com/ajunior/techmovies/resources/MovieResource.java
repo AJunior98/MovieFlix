@@ -28,7 +28,7 @@ public class MovieResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	@GetMapping(value = "/{id}/{reviews}")
+	@GetMapping(value = "/{id}/reviews")
 	public ResponseEntity<ReviewDTODetails> findByIdReview(@PathVariable Long id){
 		ReviewDTODetails dto = reviewService.findById(id);
 		return ResponseEntity.ok().body(dto);
