@@ -13,9 +13,10 @@ import com.ajunior.techmovies.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ReviewService {
-
+	
 	@Autowired
 	private ReviewRepository reviewRepository;
+
 	
 	@Transactional(readOnly = true)
 	public ReviewDTODetails findById(Long id) {
@@ -23,4 +24,6 @@ public class ReviewService {
 		Review entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new ReviewDTODetails(entity);
 	}
-}
+	
+	
+}	
