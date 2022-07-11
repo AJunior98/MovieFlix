@@ -1,10 +1,11 @@
-package com.ajunior.techmovies.dto;
+package com.ajunior.techmovies.dto.details;
 
 import java.io.Serializable;
 
+import com.ajunior.techmovies.dto.GenreDTO;
 import com.ajunior.techmovies.entities.Movie;
 
-public class MovieDetailsDTO implements Serializable {
+public class MovieDTODetails implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
@@ -15,10 +16,10 @@ public class MovieDetailsDTO implements Serializable {
 	private String synopsis;
 	private GenreDTO genre;
 	
-	public MovieDetailsDTO() {
+	public MovieDTODetails() {
 	}
 
-	public MovieDetailsDTO(Movie entity) {
+	public MovieDTODetails(Movie entity) {
 		id = entity.getId();
 		title = entity.getTitle();
 		subTitle = entity.getSubTitle();

@@ -1,32 +1,25 @@
-package com.ajunior.techmovies.dto;
+package com.ajunior.techmovies.dto.details;
 
+import com.ajunior.techmovies.dto.UserDTO;
 import com.ajunior.techmovies.entities.Movie;
 import com.ajunior.techmovies.entities.Review;
-import com.ajunior.techmovies.entities.User;
 
-public class ReviewDTO {
+public class ReviewDTODetails {
 
 	private Long id;
 	private String text;
-	private User user;
+	private UserDTO user;
 	
 	private Movie movie;
 	
-	public ReviewDTO() {
+	public ReviewDTODetails() {
 	}
 
-	public ReviewDTO(Long id, String text, User user, Movie movie) {
-		this.id = id;
-		this.text = text;
-		this.user = user;
-		this.movie = movie;
-	}
-	
-	public ReviewDTO(Review entity) {
+	public ReviewDTODetails(Review entity) {
 		id = entity.getId();
 		text = entity.getText();
-		user = entity.getUser();
 		movie = entity.getMovie();
+		user = new UserDTO(entity.getUser());
 	}
 	
 	public Long getId() {
@@ -45,11 +38,11 @@ public class ReviewDTO {
 		this.text = text;
 	}
 
-	public User getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 
@@ -61,3 +54,4 @@ public class ReviewDTO {
 		this.movie = movie;
 	}	
 }
+

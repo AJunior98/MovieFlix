@@ -7,19 +7,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ajunior.techmovies.dto.MovieDetailsDTO;
+import com.ajunior.techmovies.dto.details.MovieDTODetails;
+import com.ajunior.techmovies.dto.details.ReviewDTODetails;
 import com.ajunior.techmovies.services.MovieService;
+import com.ajunior.techmovies.services.ReviewService;
 
 @RestController
 @RequestMapping(value = "/movies")
 public class MovieResource {
 	
 	@Autowired
-	private MovieService service;
+	private MovieService movieService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<MovieDetailsDTO> findById(@PathVariable Long id){
-		MovieDetailsDTO dto = service.findById(id);
+	public ResponseEntity<MovieDTODetails> findById(@PathVariable Long id){
+		MovieDTODetails dto = movieService.findById(id);
+		return ResponseEntity.ok().body(dto);
+	}
+	
+	@GetMapping(value = "/{id}/{reviews}")
+	public ResponseEntity<ReviewDTODetails> findByIdReview(@PathVariable Long id){
+		ReviewDTODetails dto = reviewService.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 }
