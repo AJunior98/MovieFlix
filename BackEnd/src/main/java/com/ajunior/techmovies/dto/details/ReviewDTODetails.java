@@ -1,11 +1,16 @@
 package com.ajunior.techmovies.dto.details;
 
+import javax.validation.constraints.NotBlank;
+
 import com.ajunior.techmovies.entities.Review;
 
 public class ReviewDTODetails {
 
 	private Long id;
+	
+	@NotBlank(message = "Campo requerido")
 	private String text;
+	
 	private Long movieId;
 	private UserDTODetails user;
 	

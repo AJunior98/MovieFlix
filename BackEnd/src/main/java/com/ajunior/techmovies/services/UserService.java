@@ -30,6 +30,8 @@ public class UserService implements UserDetailsService{
 	@Transactional(readOnly = true)
 	public UserDTO findById(Long id) {
 		
+		authService.validateSelfOrMember(id);
+		
 		Optional<User> obj = userRepository.findById(id);
 		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new UserDTO(entity);
@@ -37,7 +39,6 @@ public class UserService implements UserDetailsService{
 	
 	@Transactional(readOnly = true)
 	public UserDTO findByYourSelf() {
-		authService.validateSelfOrMember();
 		Optional<User> obj = userRepository.findById(authService.authenticated().getId());
 		User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new UserDTO(entity);
