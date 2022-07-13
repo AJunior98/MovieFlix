@@ -62,6 +62,49 @@ INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Gostei e recomendo!', 1
 INSERT INTO tb_review (text, movie_id, user_id) VALUES ('Que Filme!!!', 2, 1);
 
 ```
+## Arquivos de configuração utilizados
+## application.properties
+Aqui configuramos em qual ambiente queremos rodar a aplicação (teste, homologação ou produção) e também é feito a atribuição do "false" para que o acesso ao banco seja finalizado na camada de serviço entregando somente a resposta para o controlador Rest.
+```
+spring.profiles.active=test
+
+spring.jpa.open-in-view=false
+```
+## application-test.properties
+Configuração do banco H2
+```
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+```
+## application-dev.properties
+Configuração do banco para homologação e produção (Postgresql)
+```
+spring.jpa.properties.javax.persistence.schema-generation.create-source=metadata
+spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create
+spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=create.sql
+spring.jpa.properties.hibernate.hbm2ddl.delimiter=;
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/dspesquisa
+spring.datasource.username=postgres
+spring.datasource.password=1234567
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.hibernate.ddl-auto=none
+```
+## application-prod.properties
+Configuração do banco de produção
+
+```
+spring.datasource.url=${DATABASE_URL}
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=false
+```
 ## Postman
 Abaixo a collection utilizada no Postman caso deseje testar as funcionalidades:
 https://www.getpostman.com/collections/77944912e2cd2a288c68
